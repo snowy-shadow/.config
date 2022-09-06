@@ -148,3 +148,4 @@ lsp.sumneko_lua.setup
 
 lsp.clangd.setup{}
 lsp.texlab.setup{}
+lsp.pyright.setup{}

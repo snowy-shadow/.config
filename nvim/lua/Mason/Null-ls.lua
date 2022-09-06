@@ -10,10 +10,9 @@ null_ls.setup(
 		-- linter
 		diagnostics.cppcheck,
 		diagnostics.vale,
+		diagnostics.pylint,
 
 		-- formatter
-		format.clang_format,
-		format.stylua,
 	}
 })
 

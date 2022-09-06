@@ -11,9 +11,8 @@ $nodejs\
 $rust\
 [](fg:#DA627D bg:#FCA17D)\
 $git_branch\
-[](fg:#FCA17D bg:#86BBD8)\
 $git_status\
-[](fg:#86BBD8)\
+[](fg:#FCA17D) \
 $line_break\
 $character
 """

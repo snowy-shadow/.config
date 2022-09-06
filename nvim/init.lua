@@ -1,12 +1,12 @@
 local requirements =
 {
 	"impatient",
+	"Setting.Settings",
 	"Plugin.Dashboard",
 	"Keymap.Keymap",
 	"Plugin.Notify",
 	"Setting.Colorscheme",
 	"Plugin.Plugins",
-	"Setting.Settings",
 	"Plugin.Bufferline",
 	"Plugin.Scrollbar",
 }

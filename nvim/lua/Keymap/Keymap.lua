@@ -37,11 +37,6 @@ keymap("n", "<M-k>", "<Esc>:m .-2<CR>==", opts)
 keymap("n", "s", "o<ESC>", opts)
 keymap("n", "S", "a<CR><ESC>", opts)
 
--- Insert --
--- Press Q to exit 
-keymap("i", "<C-j>", "<ESC>", opts)
-keymap("i", "<M-j>", "<ESC>", opts)
-
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
