@@ -16,7 +16,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     vim.cmd [[packadd packer.nvim]]
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
+--[[ Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd
 [[
     augroup packer_user_config
@@ -24,6 +24,7 @@ vim.cmd
     autocmd BufWritePost plugins.lua source <afile> | PackerSync
     augroup end
 ]]
+--]]
 
 -- Use a protected call so we don't error out on first use
 local packer = require("packer")
@@ -123,6 +124,7 @@ return packer.startup(function(use)
 		-- treesitter
 		{
 			"nvim-treesitter/nvim-treesitter",
+			"nvim-treesitter/nvim-treesitter-context",
 			run = ":TSUpdate",
 		},
 
@@ -165,6 +167,12 @@ return packer.startup(function(use)
 		cmd = {"NvimTree",},
 		"kyazdani42/nvim-tree.lua",
 		config = load_config({"Plugin.Nvim-tree"})
+	}
+
+	use
+	{
+		"mfussenegger/nvim-dap",
+		config = load_config({"Mason.DAP"})
 	}
 
 	use

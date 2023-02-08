@@ -1,20 +1,20 @@
+require("mason").setup()
 local mason_lsp = require "mason-lspconfig"
+local lsp = require "lspconfig"
+local cmp_lsp = require "cmp_nvim_lsp"
 
-mason_lsp.setup(
-{
+mason_lsp.setup {
     ensure_installed =
     {
         "clangd",
         "sumneko_lua",
+		"rust_analyzer",
         "texlab",
+		
     },
 
     automatic_installation = false,
-})
-
-local lsp = require "lspconfig"
-
-local cmp_lsp = require "cmp_nvim_lsp"
+}
 
 -- change signs
 local signs =
@@ -28,13 +28,17 @@ local signs =
 for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
-
 -- diagnostic settings
 vim.diagnostic.config(
 {
     virtual_text = false,
-    severity_sort = true,
+	severity_sort = true,
     signs = { active = signs },
+
+	underline =
+	{
+		severity = vim.diagnostic.severity.ERROR,
+	},
 
     update_in_insert = true,
     float =
@@ -101,13 +105,13 @@ local lsp_defaults =
         debounce_text_changes = 150,
     },
 
-    capabilities = cmp_lsp.update_capabilities(
+    capabilities = cmp_lsp.default_capabilities(
     vim.lsp.protocol.make_client_capabilities()),
 
     on_attach = function(client, bufnr)
         lsp_keymaps(bufnr)
         lsp_highlight_document(client)
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.documentFormattingProvider = false
     end,
 
     virtual_text = false,
@@ -120,6 +124,11 @@ lsp.util.default_config = vim.tbl_deep_extend(
 )
 
 -- individual LSP servers settings
+lsp.clangd.setup{}
+lsp.texlab.setup{}
+lsp.pyright.setup{}
+lsp.rust_analyzer.setup{}
+
 lsp.sumneko_lua.setup
 {
 	settings =
@@ -146,6 +155,3 @@ lsp.sumneko_lua.setup
 	}
 }
 
-lsp.clangd.setup{}
-lsp.texlab.setup{}
-lsp.pyright.setup{}

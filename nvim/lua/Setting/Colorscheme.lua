@@ -13,4 +13,4 @@ vim.cmd ("hi Normal ctermbg=none guibg=none")
 
 -- status bar
 require ("feline").setup()
--- require ("feline").winbar.setup() -- nvim 0.8 and up
+-- require ("feline").winbar.setup()

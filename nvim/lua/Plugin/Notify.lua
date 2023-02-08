@@ -15,10 +15,12 @@ vim.notify.setup(
 
 	level = 2,
 
+	--[[
 	max_width = function ()
 		local windwidth = vim.fn.winwidth(0)
 		return math.floor(0.4 * windwidth)
 	end,
+	]]--
 
 	render = "default",
 	stages = "fade",
