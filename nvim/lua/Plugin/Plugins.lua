@@ -60,7 +60,8 @@ return packer.startup(function(use)
 		"wbthomason/packer.nvim", -- Have packer manage itself
 
         -- Colorscheme
-        "rebelot/kanagawa.nvim",
+        -- "rebelot/kanagawa.nvim",
+		"folke/tokyonight.nvim",
 
 		-- startup
 		"glepnir/dashboard-nvim",

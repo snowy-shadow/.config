@@ -40,7 +40,7 @@ vicmd_symbol = "[ ](green)"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
-"Dev" = " "
+"Developer" = " "
 # Keep in mind that the order matters. For example:
 # "Important Documents" = "  "
 # will not be replaced, because "Documents" was already substituted before.
