@@ -1,7 +1,7 @@
 -- local home = os.getenv('HOME')
-local db = require('dashboard')
+local Dashboard = require('dashboard')
 
-db.setup(
+Dashboard.setup(
 {
 	theme = 'hyper',
 
@@ -19,25 +19,26 @@ db.setup(
 			},
 
 			{
+				desc = '  Directory',
+				group = 'Folder',
+				action = 'NvimTreeToggle',
+				key = 'd',
+			},
+
+			{
 				desc = ' Files',
-				group = 'Label',
-				action = 'Telescope find_files',
+				group = 'File',
+				action = 'Telescope app',
 				key = 'f',
 			},
 
-			{
-				desc = ' Apps',
-				group = 'DiagnosticHint',
-				action = 'Telescope app',
-				key = 'a',
-			},
-
-			{
+			--[[ {
 				desc = ' dotfiles',
 				group = 'Number',
 				action = 'Telescope dotfiles',
 				key = 'd',
-			},
+			}, 
+			]]
 		},
 
 		packages = {

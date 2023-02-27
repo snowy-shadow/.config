@@ -19,6 +19,10 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 -- Normal --
 
+-- Move visual line
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
+
 -- Better window navigation
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)

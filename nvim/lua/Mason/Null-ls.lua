@@ -1,18 +1,18 @@
 local null_ls = require "null-ls"
 
-local diagnostics = null_ls.builtins.diagnostics
-local format = null_ls.builtins.formatting
+local Diagnostics = null_ls.builtins.diagnostics
+local Format = null_ls.builtins.formatting
 
 null_ls.setup(
 {
-	sources =
-	{
+	sources = {
 		-- linter
-		diagnostics.cppcheck,
-		diagnostics.vale,
-		diagnostics.pylint,
+		Diagnostics.cppcheck,
+		Diagnostics.vale,
+		Diagnostics.pylint,
 
 		-- formatter
+		Format.clang_format,
 	}
 })
 

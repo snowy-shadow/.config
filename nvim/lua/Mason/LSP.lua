@@ -3,18 +3,19 @@ local mason_lsp = require "mason-lspconfig"
 local lsp = require "lspconfig"
 local cmp_lsp = require "cmp_nvim_lsp"
 
-mason_lsp.setup {
-    ensure_installed =
-    {
-        "clangd",
-        "sumneko_lua",
-		"rust_analyzer",
-        "texlab",
-		
-    },
+local Servers = {
+	"clangd",
+	"sumneko_lua",
+	"rust_analyzer",
+	"texlab",
+}
+
+mason_lsp.setup(
+{
+    ensure_installed = Servers,
 
     automatic_installation = false,
-}
+})
 
 -- change signs
 local signs =
@@ -28,6 +29,7 @@ local signs =
 for _, sign in ipairs(signs) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
+
 -- diagnostic settings
 vim.diagnostic.config(
 {
@@ -135,6 +137,16 @@ lsp.sumneko_lua.setup
 	{
 		Lua =
 		{
+			hint = {
+				enable = true,
+				setType = true,
+			},
+
+			IntelliSense = 
+			{
+				traceLocalSet = true,
+			},
+
 			diagnostics =
 			{
 				globals =
