@@ -28,15 +28,15 @@ truncation_length = 6
 truncation_symbol = "…/"
 
 [character]
-success_symbol = "[﬌ ](#33658A)"
-error_symbol = "[﬌ ](red)"
+success_symbol = "[➜ ](#33658A)"
+error_symbol = "[✘ ](red)"
 vicmd_symbol = "[ ](green)"
 
 # Here is how you can shorten some long paths by text replacement
 # similar to mapped_locations in Oh My Posh:
 [directory.substitutions]
 "~" = " "
-"Documents" = " "
+"Documents" = "📁 "
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
@@ -49,13 +49,8 @@ vicmd_symbol = "[ ](green)"
 
 [c]
 symbol = " "
-style = "bg:#86BBD8"
-format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
-
-# [cpp]
-# symbol = " "
-# style = "bg:#e1587e"
-# format = '[[ $symbol ($version) ](bg:#e1587e)]($style)'
+style = "bg:#e1587e"
+format = '[[ $symbol ($version) ](bg:#e1587e)]($style)'
 
 # [docker_context]
 # symbol = " "
