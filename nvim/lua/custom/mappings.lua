@@ -4,7 +4,6 @@ local M =
     {
         i =
         {
-           ["jk"] = { "<ESC>", "escape insert mode" , opts = { nowait = true }},
         }
     }
 }

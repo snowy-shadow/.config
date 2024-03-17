@@ -7,6 +7,7 @@ local highlights = require "custom.highlights"
 M.ui =
 {
 	transparency = true,
+	lsp_semantic_tokens = true, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
 	theme = "rxyhn",
 	theme_toggle = { "rxyhn", "one_light" },
 
@@ -55,7 +56,7 @@ M.ui =
 		}
 	},
 
-	cheatsheet = { theme = "simple" }, -- simple/grid
+	cheatsheet = { theme = "grid" }, -- simple/grid
 }
 
 M.plugins = "custom.plugins"

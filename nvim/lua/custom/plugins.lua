@@ -4,85 +4,83 @@ local overrides = require("custom.configs.overrides")
 local plugins =
 {
 
-  -- Override plugin definition options
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
-  },
+	-- Override plugin definition options
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+		  require "plugins.configs.lspconfig"
+		  require "custom.configs.lspconfig"
+		end, -- Override to setup mason-lspconfig
+	},
 
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      {
-        -- snippet plugin
-        "L3MON4D3/LuaSnip",
-        dependencies = "rafamadriz/friendly-snippets",
-        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-        config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts)
-        end,
-      },
+	{
+		"hrsh7th/nvim-cmp",
+		opts = function()
+		  return require "custom.configs.cmp"
+		end,
+		config = function(_, opts)
+		  require("cmp").setup(opts)
+		end,
+	},
 
-      -- autopairing of (){}[] etc
-      {
-        "windwp/nvim-autopairs",
-        opts = {
-          fast_wrap = {},
-          disable_filetype = { "TelescopePrompt", "vim" },
-        },
-        config = function(_, opts)
-          require("nvim-autopairs").setup(opts)
+	{
+		"williamboman/mason.nvim",
+		opts = overrides.mason,
+		config = function(_, opts)
+		  dofile(vim.g.base46_cache .. "mason")
+		  require("mason").setup(opts)
 
-          -- setup cmp for autopairs
-          local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-        end,
-      },
+		  -- custom nvchad cmd to install all mason binaries listed
+		  vim.api.nvim_create_user_command("MasonInstallAll", function()
+			if opts.ensure_installed and #opts.ensure_installed > 0 then
+			  vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
+			end
+		  end, {})
 
-      -- cmp sources plugins
-      {
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-nvim-lua",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-      },
-    },
-    opts = function()
-      return require "custom.configs.cmp"
-    end,
-    config = function(_, opts)
-      require("cmp").setup(opts)
-    end,
-  },
+		  vim.g.mason_binaries_list = opts.ensure_installed
+		end,
+	},
 
-  {
-    "williamboman/mason.nvim",
-    opts = overrides.mason
-  },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = overrides.treesitter,
+	},
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
-  },
+	{
+		"nvim-tree/nvim-tree.lua",
+		opts = overrides.nvimtree,
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		opts = function()
+		  return require "custom.configs.telescope"
+		end,
+		config = function(_, opts)
+		  dofile(vim.g.base46_cache .. "telescope")
+		  local telescope = require "telescope"
+		  telescope.setup(opts)
 
-  {
-    "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
-  },
+		  -- load extensions
+		  for _, ext in ipairs(opts.extensions_list) do
+			telescope.load_extension(ext)
+		  end
+		end,
+	},
 
-  -- Install a plugin
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
+	-- Install a plugin
+	{
+		"github/copilot.vim",
+		lazy = true,
+		cmd = {"Copilot"},
+	},
+	{
+		"max397574/better-escape.nvim",
+		event = "InsertEnter",
+		config = function()
+		  require("better_escape").setup()
+		end,
+	},
+
 
   -- To make a plugin not be loaded
   -- {

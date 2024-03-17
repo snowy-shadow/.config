@@ -4,13 +4,9 @@ M.treesitter =
 {
 	ensure_installed =
 	{
-		"vim",
 		"lua",
-		"html",
-		"css",
 		"javascript",
 		"typescript",
-		"tsx",
 		"c",
 		"cpp",
 		"markdown",
@@ -40,6 +36,7 @@ M.mason = {
     "prettier",
 
     -- c/cpp stuff
+	"cmake-language-server",
     "clangd",
     "clang-format",
   },
