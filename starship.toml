@@ -12,7 +12,7 @@ $rust\
 [](fg:#DA627D bg:#FCA17D)\
 $git_branch\
 $git_status\
-[](fg:#FCA17D) \
+[](fg:#FCA17D)\
 $line_break\
 $character
 """
@@ -70,11 +70,11 @@ format = '[[ $symbol ($version) ](bg:#e1587e)]($style)'
 [git_branch]
 symbol = ""
 style = "bg:#FCA17D"
-format = '[[ $symbol $branch ](bg:#FCA17D)]($style)'
+format = '[ $symbol $branch ]($style)'
 
 [git_status]
 style = "bg:#FCA17D"
-format = '[[($all_status$ahead_behind )](bg:#FCA17D)]($style)'
+format = '[$all_status$ahead_behind ]($style)'
 
 # [golang]
 # symbol = " "

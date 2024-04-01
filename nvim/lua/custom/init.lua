@@ -44,6 +44,9 @@ local Settings =
     shortmess = "cmxs",                         -- shorter messages
 	laststatus = 3,
 	showcmd = true,
+
+	spell = true,
+	spelllang = 'en_us',
 }
 for k, v in pairs(Settings) do
     vim.opt[k] = v
