@@ -4,46 +4,26 @@ local overrides = require("custom.configs.overrides")
 local plugins =
 {
 	{
-		'nvimdev/dashboard-nvim',
-		event = 'VimEnter',
-		config = function()
-		require('dashboard').setup
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts =
 		{
-			theme = 'hyper',
-			config =
-			{
-				week_header =
-				{
-					enable = true,
-				},
-				shortcut =
-				{
-					{ desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
-					{
-						icon = ' ',
-						icon_hl = '@variable',
-						desc = 'Files',
-						group = 'Label',
-						action = 'Telescope find_files',
-						key = 'f',
-					},
-					{
-						desc = ' Apps',
-						group = 'DiagnosticHint',
-						action = 'Telescope app',
-						key = 'a',
-					},
-					{
-						desc = ' dotfiles',
-						group = 'Number',
-						action = 'Telescope dotfiles',
-						key = 'd',
-					},
-				},
-			},
+			-- add any options here
+		},
+		config =
+			function()
+				require "custom.configs.noice"
+				require "custom.configs.notify"
+			end,
+		dependencies =
+		{
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
 		}
-		end,
-		dependencies = { {'nvim-tree/nvim-web-devicons'}}
 	},
 	-- Override plugin definition options
 	{
@@ -81,21 +61,21 @@ local plugins =
 		  vim.g.mason_binaries_list = opts.ensure_installed
 		end,
 	},
-
 	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = overrides.treesitter,
-	},
-
-	{
-		"nvim-tree/nvim-tree.lua",
-		opts = overrides.nvimtree,
+		'nvim-telescope/telescope-fzf-native.nvim',
+		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+		event = "VeryLazy",
 	},
 	{
 		"nvim-telescope/telescope.nvim",
 		opts = function()
 		  return require "custom.configs.telescope"
 		end,
+		dependencies =
+		{
+			'nvim-telescope/telescope-fzf-native.nvim',
+		},
+
 		config = function(_, opts)
 		  dofile(vim.g.base46_cache .. "telescope")
 		  local telescope = require "telescope"
@@ -112,6 +92,7 @@ local plugins =
 	{
 		"github/copilot.vim",
 		lazy = true,
+		event = "VeryLazy",
 		cmd = {"Copilot"},
 	},
 	{
@@ -122,17 +103,30 @@ local plugins =
 		end,
 	},
 
+	{
+		"karb94/neoscroll.nvim",
+		config =
+			function ()
+				require "custom.configs.neoscroll"
+			end
+	},
+
+
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter",
+	-- 	opts = overrides.treesitter,
+	-- },
+	--
+	-- {
+	-- 	"nvim-tree/nvim-tree.lua",
+	-- 	opts = overrides.nvimtree,
+	-- },
 
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
   --   enabled = false
   -- },
-	-- disable
-	{
-		"NvChad/Nvdash.lua",
-		enabled = false
-	},
 
 }
 

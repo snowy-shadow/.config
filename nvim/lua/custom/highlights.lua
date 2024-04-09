@@ -5,10 +5,22 @@
 local M = {}
 
 ---@type Base46HLGroupsList
-M.override = {
-  Comment = {
-    italic = false,
-  },
+M.override =
+{
+	NvDashAscii =
+	{
+		bg ="none",
+		fg ="light_grey"
+	},
+	NvDashButtons =
+	{
+		bg ="none",
+		fg ="#FFB7C5"
+	},
+	Comment =
+	{
+		italic = false,
+	},
 }
 
 ---@type HLTable

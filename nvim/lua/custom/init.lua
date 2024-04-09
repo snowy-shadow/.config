@@ -9,7 +9,7 @@
 local Settings =
 {
     backup = false,                          -- creates a backup file
-    clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
+	clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
     cmdheight = 2,                           -- more space in the neovim command line for displaying messages
     completeopt = { "menuone", "noselect" }, -- mostly just for cmp
     conceallevel = 0,                        -- so that `` is visible in markdown files
@@ -26,7 +26,7 @@ local Settings =
     splitright = true,                       -- force all vertical splits to go to the right of current window
     swapfile = false,                        -- creates a swapfile
     termguicolors = true,                   -- set term gui colors (mac terminal doesn't support this)
-    timeoutlen = 150,                        -- time to wait for a mapped sequence to complete (in milliseconds)
+    timeoutlen = 200,                        -- time to wait for a mapped sequence to complete (in milliseconds)
     undofile = true,                         -- enable persistent undo
     updatetime = 700,                        -- faster completion (4000ms default)
     writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
@@ -34,7 +34,7 @@ local Settings =
     shiftwidth = 4,                         -- x spaces inserted for each indentation
     tabstop = 4,                             -- insert x spaces for a tab
     cursorline = false,                       -- highlight the current line
-    number = false,                           -- set numbered lines
+    number = true,                           -- set numbered lines
     relativenumber = true,                  -- set relative numbered lines
     numberwidth = 4,                         -- set number column width to 2 {default 4}
     signcolumn = "number",                      -- always show the sign column, otherwise it would shift the text each time
@@ -52,4 +52,19 @@ for k, v in pairs(Settings) do
     vim.opt[k] = v
 end
 
+vim.g.clipboard =
+{
+	name = 'WslClipboard',
+	copy =
+	{
+		['+'] = 'clip.exe',
+		['*'] = 'clip.exe',
+	},
+	paste =
+	{
+		['+'] = 'pwsh.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		['*'] = 'pwsh.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+	},
+	cache_enabled = 0,
+}
 -- require "custom.configs.cmp"

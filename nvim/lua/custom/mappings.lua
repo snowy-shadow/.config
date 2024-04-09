@@ -1,11 +1,11 @@
-local M =
+---@type MappingsTable
+local M = {}
+
+M.neoscroll =
 {
-    abc =
-    {
-        i =
-        {
-        }
-    }
+	n =
+	{
+	}
 }
 
 return M
