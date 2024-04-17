@@ -12,8 +12,8 @@ local plugins =
 		},
 		config =
 			function()
-				require "custom.configs.noice"
 				require "custom.configs.notify"
+				require "custom.configs.noice"
 			end,
 		dependencies =
 		{
@@ -24,6 +24,16 @@ local plugins =
 			--   If not available, we use `mini` as the fallback
 			"rcarriga/nvim-notify",
 		}
+	},
+-- init.lua
+	{
+		'MeanderingProgrammer/markdown.nvim',
+		name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
+		ft = {"markdown"},
+		dependencies = { 'nvim-treesitter/nvim-treesitter' },
+		config = function()
+			require "custom.configs.render-markdown"
+		end,
 	},
 	-- Override plugin definition options
 	{
@@ -68,11 +78,16 @@ local plugins =
 	},
 	{
 		"nvim-telescope/telescope.nvim",
+		cmd = "Telescope",
+		init = function()
+		  require("core.utils").load_mappings "telescope"
+		end,
 		opts = function()
 		  return require "custom.configs.telescope"
 		end,
 		dependencies =
 		{
+			"nvim-treesitter/nvim-treesitter",
 			'nvim-telescope/telescope-fzf-native.nvim',
 		},
 
@@ -89,12 +104,12 @@ local plugins =
 	},
 
 	-- Install a plugin
-	{
-		"github/copilot.vim",
-		lazy = true,
-		event = "VeryLazy",
-		cmd = {"Copilot"},
-	},
+	-- {
+	-- 	"github/copilot.vim",
+	-- 	lazy = true,
+	-- 	event = "VeryLazy",
+	-- 	cmd = {"Copilot"},
+	-- },
 	{
 		"max397574/better-escape.nvim",
 		event = "InsertEnter",
@@ -102,15 +117,6 @@ local plugins =
 		  require("better_escape").setup()
 		end,
 	},
-
-	{
-		"karb94/neoscroll.nvim",
-		config =
-			function ()
-				require "custom.configs.neoscroll"
-			end
-	},
-
 
 	-- {
 	-- 	"nvim-treesitter/nvim-treesitter",

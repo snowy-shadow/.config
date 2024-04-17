@@ -7,11 +7,11 @@ neoscroll.setup
 	mappings = {},
 })
 
-local jump_time_ms = 200
+local jump_time_ms = 500
 local mappings =
 {
-	["<C-;>"] = { "scroll", { "-vim.wo.scroll", "true", jump_time_ms, "center" }},
-	["<C-'>"] = { "scroll", { "-vim.wo.scroll", "true", jump_time_ms, "center" }}
+	["<C-;>"] = { "scroll", { "15", "true", jump_time_ms, "center" }},
+	["<C-'>"] = { "scroll", { "15", "true", jump_time_ms, "center" }}
 }
 
 config.set_mappings(mappings)
