@@ -45,6 +45,7 @@ local Settings =
 	laststatus = 3,
 	showcmd = true,
 
+	-- spell checker, nvim 0.9+
 	spell = true,
 	spelllang = 'en_us',
 }
@@ -67,4 +68,3 @@ vim.g.clipboard =
 	},
 	cache_enabled = 0,
 }
--- require "custom.configs.cmp"

@@ -3,28 +3,28 @@ local overrides = require("custom.configs.overrides")
 ---@type NvPluginSpec[]
 local plugins =
 {
-	{
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts =
-		{
-			-- add any options here
-		},
-		config =
-			function()
-				require "custom.configs.notify"
-				require "custom.configs.noice"
-			end,
-		dependencies =
-		{
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
-			"rcarriga/nvim-notify",
-		}
-	},
+	-- {
+	-- 	"folke/noice.nvim",
+	-- 	event = "VeryLazy",
+	-- 	opts =
+	-- 	{
+	-- 		-- add any options here
+	-- 	},
+	-- 	config =
+	-- 		function()
+	-- 			require "custom.configs.notify"
+	-- 			require "custom.configs.noice"
+	-- 		end,
+	-- 	dependencies =
+	-- 	{
+	-- 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		-- OPTIONAL:
+	-- 		--   `nvim-notify` is only needed, if you want to use the notification view.
+	-- 		--   If not available, we use `mini` as the fallback
+	-- 		"rcarriga/nvim-notify",
+	-- 	}
+	-- },
 -- init.lua
 	{
 		'MeanderingProgrammer/markdown.nvim',
@@ -42,6 +42,23 @@ local plugins =
 		  require "plugins.configs.lspconfig"
 		  require "custom.configs.lspconfig"
 		end, -- Override to setup mason-lspconfig
+	},
+
+	-- DAP
+	{ "folke/neodev.nvim", opts = {} },
+	{ "nvim-neotest/nvim-nio" },
+	{
+		"mfussenegger/nvim-dap",
+		config = function ()
+			require "custom.configs.dap.dap"
+		end
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+		config = function ()
+			require "custom.configs.dap.ui"
+		end
 	},
 
 	{
@@ -74,7 +91,30 @@ local plugins =
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-		event = "VeryLazy",
+		config =
+			function()
+				require("telescope").load_extension("fzf")
+			end,
+	},
+
+	{
+		'nvim-telescope/telescope-project.nvim',
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		keys = {"<leader>fp"},
+		config =
+			function()
+				require("telescope").load_extension("project")
+			end,
+	},
+
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		keys = {"<leader>tb"},
+		config =
+			function()
+				require("telescope").load_extension("file_browser")
+			end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -87,8 +127,8 @@ local plugins =
 		end,
 		dependencies =
 		{
-			"nvim-treesitter/nvim-treesitter",
 			'nvim-telescope/telescope-fzf-native.nvim',
+			"nvim-treesitter/nvim-treesitter",
 		},
 
 		config = function(_, opts)
