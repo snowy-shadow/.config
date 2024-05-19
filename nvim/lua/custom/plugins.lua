@@ -1,5 +1,3 @@
-local overrides = require("custom.configs.overrides")
-
 ---@type NvPluginSpec[]
 local plugins =
 {
@@ -71,23 +69,27 @@ local plugins =
 		end,
 	},
 
-	{
-		"williamboman/mason.nvim",
-		opts = overrides.mason,
-		config = function(_, opts)
-		  dofile(vim.g.base46_cache .. "mason")
-		  require("mason").setup(opts)
+  -- lsp stuff
+  {
+    "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+    opts = function()
+      return require "custom.configs.mason"
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "mason")
+      require("mason").setup(opts)
 
-		  -- custom nvchad cmd to install all mason binaries listed
-		  vim.api.nvim_create_user_command("MasonInstallAll", function()
-			if opts.ensure_installed and #opts.ensure_installed > 0 then
-			  vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
-			end
-		  end, {})
+      -- custom nvchad cmd to install all mason binaries listed
+      vim.api.nvim_create_user_command("MasonInstallAll", function()
+        if opts.ensure_installed and #opts.ensure_installed > 0 then
+          vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
+        end
+      end, {})
 
-		  vim.g.mason_binaries_list = opts.ensure_installed
-		end,
-	},
+      vim.g.mason_binaries_list = opts.ensure_installed
+    end,
+  },
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
@@ -118,28 +120,20 @@ local plugins =
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		cmd = "Telescope",
-		init = function()
-		  require("core.utils").load_mappings "telescope"
-		end,
-		opts = function()
-		  return require "custom.configs.telescope"
-		end,
 		dependencies =
 		{
 			'nvim-telescope/telescope-fzf-native.nvim',
 			"nvim-treesitter/nvim-treesitter",
 		},
-
+		cmd = "Telescope",
+		init = function()
+			require("core.utils").load_mappings "telescope"
+		end,
+		opts = function()
+			return require "custom.configs.telescope"
+		end,
 		config = function(_, opts)
-		  dofile(vim.g.base46_cache .. "telescope")
-		  local telescope = require "telescope"
-		  telescope.setup(opts)
-
-		  -- load extensions
-		  for _, ext in ipairs(opts.extensions_list) do
-			telescope.load_extension(ext)
-		  end
+			require'telescope'.setup(opts)
 		end,
 	},
 
@@ -158,15 +152,36 @@ local plugins =
 		end,
 	},
 
-	-- {
-	-- 	"nvim-treesitter/nvim-treesitter",
-	-- 	opts = overrides.treesitter,
-	-- },
-	--
-	-- {
-	-- 	"nvim-tree/nvim-tree.lua",
-	-- 	opts = overrides.nvimtree,
-	-- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    tag = "v0.9.2",
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require "custom.configs.treesitter"
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "syntax")
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    init = function()
+      require("core.utils").load_mappings "nvimtree"
+    end,
+    opts = function()
+      return require "custom.configs.nvimtree"
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "nvimtree")
+      require("nvim-tree").setup(opts)
+    end,
+  },
+
 
   -- To make a plugin not be loaded
   -- {
