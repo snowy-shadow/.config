@@ -68,6 +68,11 @@ return {
         L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
 
+        ["<Leader>um"] = {
+          function() require("notify").dismiss { pending = true, silent = true } end,
+          desc = "Close message",
+        },
+
         -- mappings seen under group name "Buffer"
         ["<Leader>bD"] = {
           function()
