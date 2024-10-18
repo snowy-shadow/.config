@@ -25,5 +25,8 @@ return {
   -- UI
   { import = "astrocommunity.utility.noice-nvim" },
 
+  -- git
+  { import = "astrocommunity.git.neogit" },
+
   -- import/override with your plugins folder
 }
