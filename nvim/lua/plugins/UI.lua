@@ -79,13 +79,6 @@ return {
         },
       },
     },
-    notify = {
-      size = {
-        width = 30,
-        max_width = 30,
-      },
-    },
-
     smart_move = {
       -- noice tries to move out of the way of existing floating windows.
       enabled = true, -- you can disable this behaviour here

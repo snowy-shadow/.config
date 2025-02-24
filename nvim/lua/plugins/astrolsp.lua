@@ -49,8 +49,8 @@ return {
       clangd = {
         cmd = {
           "clangd",
+          "--compile-commands-dir=Build",
           "--background-index",
-          "-j=12",
           "--clang-tidy",
           "--clang-tidy-checks=*,-readability-*",
           "--all-scopes-completion",
@@ -58,7 +58,7 @@ return {
           "--completion-style=detailed",
           "--header-insertion-decorators",
           "--header-insertion=iwyu",
-          "--pch-storage=memory",
+          "--experimental-modules-support",
         },
       },
     },

@@ -42,14 +42,6 @@ return {
         -- spell check
         spell = true, -- sets vim.opt.spell
         spelllang = "en_us",
-
-        vim.filetype.add {
-          extension = {
-            hlsl = "hlsl",
-            cppm = "cpp",
-            m = "cpp",
-          },
-        },
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
