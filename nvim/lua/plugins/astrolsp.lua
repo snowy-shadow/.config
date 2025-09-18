@@ -43,24 +43,7 @@ return {
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
-    config = {
-      clangd = {
-        capabilities = { offsetEncoding = "utf-8" },
-        cmd = {
-          "clangd",
-          "--compile-commands-dir=Build",
-          "--background-index",
-          "--clang-tidy",
-          "--clang-tidy-checks=*,-readability-*",
-          "--all-scopes-completion",
-          "--cross-file-rename",
-          "--completion-style=detailed",
-          "--header-insertion-decorators",
-          "--header-insertion=iwyu",
-          "--experimental-modules-support",
-        },
-      },
-    },
+    config = {},
     -- customize how language servers are attached
     handlers = {
       -- a function without a key is simply the default handler, functions take two parameters, the server name and the configured options table for that server

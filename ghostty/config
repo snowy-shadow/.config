@@ -1,0 +1,18 @@
+window-height = 40
+window-width = 120
+
+font-family = "FiraCode Nerd Font Mono"
+font-feature = "cv01", "cv02", "cv11", "ss02", "ss04", "ss05", "ss07", "ss09"
+font-size = 14
+
+# background-opacity = 0.68
+# background-blur = 20
+
+# === Platform Specific (macOS) ===
+
+# Values: "visible-menu", "true", "false"
+macos-non-native-fullscreen = false
+# Values: "native", "transparent", "tabs", "hidden"
+macos-titlebar-style = "transparent"
+macos-auto-secure-input = true
+macos-secure-input-indication = true

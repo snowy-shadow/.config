@@ -13,6 +13,7 @@ return {
 
   -- language
   { import = "astrocommunity.pack.cpp" },
+  { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.cmake" },
 
   -- diagnostics
