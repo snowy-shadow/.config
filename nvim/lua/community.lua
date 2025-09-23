@@ -7,21 +7,22 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.motion.leap-nvim" },
 
   -- language
-  { import = "astrocommunity.pack.cpp" },
-  { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.cmake" },
+  { import = "astrocommunity.pack.cpp" },
+  { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
 
   -- diagnostics
   { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
 
   -- editing-suport
   { import = "astrocommunity.editing-support.nvim-context-vt" },
-
   { import = "astrocommunity.register.nvim-neoclip-lua" },
 
   -- UI
