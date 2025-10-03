@@ -11,12 +11,11 @@ return {
   { import = "astrocommunity.motion.leap-nvim" },
 
   -- language
-  { import = "astrocommunity.pack.cmake" },
   { import = "astrocommunity.pack.cpp" },
-  { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.cmake" },
+  { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.rust" },
-  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
 
   -- diagnostics
   { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
@@ -24,6 +23,7 @@ return {
   -- editing-suport
   { import = "astrocommunity.editing-support.nvim-context-vt" },
   { import = "astrocommunity.register.nvim-neoclip-lua" },
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
 
   -- UI
   { import = "astrocommunity.utility.noice-nvim" },

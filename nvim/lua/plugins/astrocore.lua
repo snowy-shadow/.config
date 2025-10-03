@@ -76,7 +76,13 @@ return {
           end,
           desc = "Close buffer from tabline",
         },
-
+        ["<leader>u."] = {
+          function()
+            vim.cmd("cd " .. vim.fn.expand "%:p:h")
+            vim.notify(vim.fn.getcwd())
+          end,
+          desc = "CD to current file's directory",
+        },
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },
