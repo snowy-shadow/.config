@@ -8,7 +8,7 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.motion.leap-nvim" },
+  { import = "astrocommunity.motion.flash-nvim" },
 
   -- language
   { import = "astrocommunity.pack.cpp" },
@@ -16,6 +16,7 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.haskell" },
 
   -- diagnostics
   { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
