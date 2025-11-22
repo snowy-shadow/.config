@@ -11,12 +11,12 @@ return {
   { import = "astrocommunity.motion.flash-nvim" },
 
   -- language
-  { import = "astrocommunity.pack.cpp" },
-  { import = "astrocommunity.pack.cmake" },
-  { import = "astrocommunity.pack.markdown" },
-  { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.pack.rust" },
-  { import = "astrocommunity.pack.haskell" },
+  -- { import = "astrocommunity.pack.cpp" },
+  -- { import = "astrocommunity.pack.cmake" },
+  -- { import = "astrocommunity.pack.markdown" },
+  -- { import = "astrocommunity.pack.python" },
+  -- { import = "astrocommunity.pack.rust" },
+  -- { import = "astrocommunity.pack.haskell" },
 
   -- diagnostics
   { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
