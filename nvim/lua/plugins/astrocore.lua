@@ -24,7 +24,7 @@ return {
       virtual_text = true,
       underline = true,
     },
-    -- -- passed to `vim.filetype.add`
+    -- passed to `vim.filetype.add`
     -- filetypes = {
     --   -- see `:h vim.filetype.add` for usage
     --   extension = {
@@ -43,12 +43,17 @@ return {
         relativenumber = true, -- sets vim.opt.relativenumber
         number = true, -- sets vim.opt.number
         signcolumn = "yes", -- sets vim.opt.signcolumn to yes
-        wrap = false, -- sets vim.opt.wrap
+
+        wrap = true, -- sets vim.opt.wrap
         cursorline = false, -- highlight the current line
+
         scrolloff = 15, -- auto scroll down when cursor reaches certain position
         sidescrolloff = 14,
+
         spell = true, -- sets vim.opt.spell
         spelllang = "en_us",
+
+        winborder = "none",
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
@@ -83,6 +88,8 @@ return {
           end,
           desc = "CD to current file's directory",
         },
+        ["<M-'>"] = { function() require("toggleterm").toggle() end, desc = "toggle term open" },
+
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         -- ["<Leader>b"] = { desc = "Buffers" },
