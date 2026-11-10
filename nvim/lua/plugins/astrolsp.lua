@@ -45,6 +45,9 @@ return {
     -- client specific configuration can also go in `lsp/` in your configuration root (see `:h lsp-config`)
     config = {
       -- ["*"] = { capabilities = {} }, -- modify default LSP client settings such as capabilities
+      -- the community python pack forces pythonPath = global `python`, which hides project venvs.
+      -- no-op it so basedpyright auto-detects .venv (or uses [tool.basedpyright] venvPath/venv in pyproject.toml)
+      basedpyright = { before_init = function() end },
     },
     -- customize how language servers are attached
     handlers = {

@@ -14,9 +14,10 @@ return {
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.cmake" },
   { import = "astrocommunity.pack.markdown" },
+  { import = "astrocommunity.pack.java" },
   { import = "astrocommunity.pack.python" },
   { import = "astrocommunity.pack.rust" },
-  { import = "astrocommunity.pack.haskell" },
+  -- { import = "astrocommunity.pack.haskell" },
   { import = "astrocommunity.pack.lua" },
 
   -- diagnostics
@@ -26,6 +27,7 @@ return {
   { import = "astrocommunity.editing-support.nvim-context-vt" },
   { import = "astrocommunity.register.nvim-neoclip-lua" },
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
+  { import = "astrocommunity.markdown-and-latex.vimtex" },
 
   -- UI
   { import = "astrocommunity.utility.noice-nvim" },
@@ -33,4 +35,7 @@ return {
   -- git
   { import = "astrocommunity.git.neogit" },
   { import = "astrocommunity.git.diffview-nvim" },
+
+  -- AI
+  { import = "astrocommunity.ai.avante-nvim" },
 }
